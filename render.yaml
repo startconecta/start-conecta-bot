@@ -1,1 +1,25 @@
 
+    # Exported from Render on 2025-07-12T21:46:27Z (Data de exportação original, pode ser atualizada)
+    services:
+    - type: web
+      name: start-conecta-bot # Altere para o nome do seu serviço no Render, se for diferente
+      runtime: python
+      repo: https://github.com/startconecta/start-conecta-bot.git # <--- VERIFIQUE ESTE CAMPO!
+      plan: free
+      # Adicione a linha "dockerfilePath: null" para evitar a procura por um Dockerfile
+      dockerfilePath: null
+      envVars:
+      - key: ZAPI_INSTANCE_ID
+        value: 3E3F4C813C2E909192EC8258D1F0342D # Seu ID de instância Z-API
+      - key: ZAPI_TOKEN
+        value: 4D998A22DCD24141F483B8C1 # Seu Token Z-API
+      - key: PORT
+        value: "10000" # Porta da aplicação
+      - key: OPENAI_API_KEY
+        value: # Embora o bot use Gemini, mantenha se precisar para futuras integrações
+      region: oregon # Mantenha ou mude para a região mais próxima de você
+      buildCommand: pip install -r requirements.txt
+      startCommand: python app.py # Corrigido para 'app.py' que está na raiz do seu projeto
+      autoDeployTrigger: commit
+    version: "1"
+    
